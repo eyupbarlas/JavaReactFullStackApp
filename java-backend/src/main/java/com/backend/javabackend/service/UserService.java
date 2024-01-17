@@ -21,23 +21,28 @@ public class UserService {
     public List<User> getAllUsers(){
         return userRepository.findAll();
     }
+    public User getUser(Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow( ()-> new IllegalStateException("User not found with ID: "+userId));
+    }
 
-    public void createNewUser(User request){
+    public User createNewUser(User request){
         User user = User.builder()
                 .username(request.getUsername())
                 .name(request.getName())
                 .email(request.getEmail()).build();
 
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
-    public void deleteUserById(Long userId){
+    public Boolean deleteUserById(Long userId){
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isEmpty()){
             // @TODO: Throw custom exception
             log.error("There is no user with this id {}", userId);
         }
         userRepository.deleteById(userId);
+        return Boolean.TRUE;
     }
 
     @Transactional
