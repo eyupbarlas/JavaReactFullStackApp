@@ -1,7 +1,5 @@
 name: Format
-on:
-  push:
-    branches: [ master ]
+on: [push]
 jobs:
   formatting:
     runs-on: ubuntu-latest
