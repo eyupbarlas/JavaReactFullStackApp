@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -37,11 +36,8 @@ public class UserService {
     }
 
     public Boolean deleteUserById(Long userId){
-        Optional<User> userOptional = userRepository.findById(userId);
-        if (userOptional.isEmpty()){
-            // @TODO: Throw custom exception
-            log.error("There is no user with this id {}", userId);
-        }
+        userRepository.findById(userId)
+                .orElseThrow(()-> new UserNotFoundException("User not found with ID: "+ userId));
         userRepository.deleteById(userId);
         return Boolean.TRUE;
     }
@@ -49,7 +45,7 @@ public class UserService {
     @Transactional
     public ResponseEntity<User> updateUser(Long userId, User user) {
         User studentFoundById = userRepository.findById(userId)
-                .orElseThrow( ()-> new IllegalStateException("Student not found with this id :: "+userId));
+                .orElseThrow( ()-> new IllegalStateException("User not found with this id :: "+userId));
 
         boolean isPresent = userRepository.findById(user.getId()).isPresent();
         if (isPresent){

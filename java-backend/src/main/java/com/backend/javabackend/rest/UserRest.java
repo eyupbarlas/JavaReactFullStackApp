@@ -71,7 +71,7 @@ public class UserRest {
                 UserResponse.builder()
                         .timestamp(LocalDateTime.now())
                         .data(Map.of("user" , userService.deleteUserById(id)))
-                        .message("Server deleted successfully")
+                        .message("User deleted successfully")
                         .status(HttpStatus.OK)
                         .statusCode(HttpStatus.OK.value())
                         .build()
