@@ -1,6 +1,7 @@
 package com.backend.javabackend.service;
 
 import com.backend.javabackend.data.User;
+import com.backend.javabackend.exception.UserNotFoundException;
 import com.backend.javabackend.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ public class UserService {
     }
     public User getUser(Long userId) {
         return userRepository.findById(userId)
-                .orElseThrow( ()-> new IllegalStateException("User not found with ID: "+userId));
+                .orElseThrow(()-> new UserNotFoundException("User not found with ID: "+ userId));
     }
 
     public User createNewUser(User request){

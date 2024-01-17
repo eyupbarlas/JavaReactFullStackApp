@@ -17,16 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-import static com.backend.javabackend.constants.FullStackAppConstants.API_V_1_USER;
+import static com.backend.javabackend.constants.FullStackAppConstants.API_V_1_USERS;
 
 @RestController
-@RequestMapping(value = API_V_1_USER)
+@RequestMapping(value = API_V_1_USERS)
 @RequiredArgsConstructor
 public class UserRest {
 
     private final UserService userService;
 
-    @GetMapping("/users")
+    @GetMapping("/all")
     public ResponseEntity<UserResponse> getUsers() {
         return ResponseEntity.ok(
                 UserResponse.builder()
@@ -52,7 +52,7 @@ public class UserRest {
         );
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/user/{id}")
     public ResponseEntity<UserResponse> getUser(@PathVariable("id") Long id) {
         return ResponseEntity.ok(
                 UserResponse.builder()
