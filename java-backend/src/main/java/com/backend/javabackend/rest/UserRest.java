@@ -1,5 +1,6 @@
 package com.backend.javabackend.rest;
 
+import com.backend.javabackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,5 +14,5 @@ import static com.backend.javabackend.constants.FullStackAppConstants.API_V_1_US
 @RequiredArgsConstructor
 public class UserRest {
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
-
+    private final UserService userService;
 }
