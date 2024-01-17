@@ -4,5 +4,5 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public class FullStackAppConstants {
-    public static final String API_V_1_USER = "/api/v1/user";
+    public static final String API_V_1_USERS = "/api/v1/users";
 }
