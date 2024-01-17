@@ -25,6 +25,7 @@ import static com.backend.javabackend.constants.FullStackAppConstants.API_V_1_US
 public class UserRest {
 
     private final UserService userService;
+
     @GetMapping("/users")
     public ResponseEntity<UserResponse> getUsers() {
         return ResponseEntity.ok(
