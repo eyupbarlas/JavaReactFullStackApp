@@ -4,7 +4,7 @@ import axios from "axios"
 
 export default function Home() {
 
-    const GET_REQUEST = 'http://localhost:8080/users';
+    const GET_REQUEST = 'http://localhost:8080/api/v1/users/all';
 
     const [users, setUsers] = useState([]);
 
@@ -14,7 +14,8 @@ export default function Home() {
 
     const loadUsers = async () => {
         const result = await axios.get(GET_REQUEST);
-        setUsers(result.data);
+        console.log(result.data.data.users);
+        setUsers(result.data.data.users);
     };
 
     return (
@@ -34,15 +35,16 @@ export default function Home() {
                     <tbody>
 
                         {
-                            users.map((user, index) => (
+                            
+                        
+                        users.map((user, index) => (
                                 <tr>
                                     <th scope="row" key={index}>{index+1}</th>
                                     <td>{user.name}</td>
                                     <td>{user.username}</td>
                                     <td>{user.email}</td>
                                 </tr>
-                            ))
-                        }
+                            ))}
 
                     </tbody>
                 </table>
