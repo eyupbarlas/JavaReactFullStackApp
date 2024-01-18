@@ -6,6 +6,7 @@ import com.backend.javabackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,10 +19,12 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 import static com.backend.javabackend.constants.FullStackAppConstants.API_V_1_USERS;
+import static com.backend.javabackend.constants.FullStackAppConstants.FRONT_URL;
 
 @RestController
 @RequestMapping(value = API_V_1_USERS)
 @RequiredArgsConstructor
+@CrossOrigin(value = FRONT_URL)
 public class UserRest {
 
     private final UserService userService;
