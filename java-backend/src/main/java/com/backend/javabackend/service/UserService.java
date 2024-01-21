@@ -42,6 +42,14 @@ public class UserService {
         return Boolean.TRUE;
     }
 
+    public Boolean deleteUserById22(Long userId){
+        userRepository.findById(userId)
+                .orElseThrow(()-> new UserNotFoundException("User not found with ID: "+ userId));
+        userRepository.deleteById(userId);
+        return Boolean.TRUE;
+    }
+
+
     @Transactional
     public ResponseEntity<User> updateUser(Long userId, User user) {
         User studentFoundById = userRepository.findById(userId)
